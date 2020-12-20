@@ -7,15 +7,6 @@ Citizen.CreateThread(function()
     end
 end)
 
-local sleep = 2000
-local perform = false
-local isInMarker = false
-local isInMarker2 = false
-local isInMarker3 = false
-local isInMarker4 = false
-local isInMarker5 = false
-local isInMarker6 = false
-local isInMarker7 = false
 local pisiriyormu = false
 local hazirliyormu = false
 local paketliyormu = false
@@ -126,14 +117,7 @@ end
 
 Citizen.CreateThread(function()
     while true do
-        Citizen.Wait(sleep)
-        perform = false
-        isInMarker = false
-        isInMarker2 = false
-        isInMarker3 = false
-        isInMarker4 = false
-        isInMarker5 = false
-        isInMarker6 = false
+        local sleep = 2000
 
         local player = PlayerPedId()
         local playercoords = GetEntityCoords(player)
@@ -147,89 +131,82 @@ Citizen.CreateThread(function()
         local distance7 = GetDistanceBetweenCoords(playercoords, Config.TacoMalzemesi.x, Config.TacoMalzemesi.y, Config.TacoMalzemesi.z, true)
 
         if distance < 10 then
-            perform = true
+            sleep = 7
             DrawMarker(2, Config.TacoEtPisirme.x, Config.TacoEtPisirme.y, Config.TacoEtPisirme.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.4, 0.4, 0.2, 255, 255, 255, 255, 0, 0, 0, 1, 0, 0, 0)
             if distance < 1 then
-                isInMarker = true
                 DrawText3D(Config.TacoEtPisirme.x, Config.TacoEtPisirme.y, Config.TacoEtPisirme.z + 0.4, '~g~E~s~ - Taco Eti Pisir')
+                if IsControlJustReleased(0, 38) then
+                    TacoPisir()
+                end
             end
         end
 
         if distance2 < 10 then
-            perform = true
+            sleep = 7
             DrawMarker(2, Config.TacoHazirlama.x, Config.TacoHazirlama.y, Config.TacoHazirlama.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.4, 0.4, 0.2, 255, 255, 255, 255, 0, 0, 0, 1, 0, 0, 0)
             if distance2 < 1 then
-                isInMarker2 = true
                 DrawText3D(Config.TacoHazirlama.x, Config.TacoHazirlama.y, Config.TacoHazirlama.z + 0.4, '~g~E~s~ - Taco Hazırla')
+                if IsControlJustReleased(0, 38) then
+                    TacoHazirla()
+                end
             end
         end
 
         if distance3 < 10 then
-            perform = true
+            sleep = 7
             DrawMarker(2, Config.TacoPaketleme.x, Config.TacoPaketleme.y, Config.TacoPaketleme.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.4, 0.4, 0.2, 255, 255, 255, 255, 0, 0, 0, 1, 0, 0, 0)
             if distance3 < 1 then
-                isInMarker3 = true
                 DrawText3D(Config.TacoPaketleme.x, Config.TacoPaketleme.y, Config.TacoPaketleme.z + 0.4, '~g~E~s~ - Taco Paketle')
+                if IsControlJustReleased(0, 38) then
+                    TacoPaketle()
+                end
             end
         end
 
         if distance4 < 10 then
-            perform = true
+            sleep = 7
             DrawMarker(2, Config.TacoSatisyeri.x, Config.TacoSatisyeri.y, Config.TacoSatisyeri.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.4, 0.4, 0.2, 255, 255, 255, 255, 0, 0, 0, 1, 0, 0, 0)
             if distance4 < 1 then
-                isInMarker4 = true
                 DrawText3D(Config.TacoSatisyeri.x, Config.TacoSatisyeri.y, Config.TacoSatisyeri.z + 0.4, '~g~E~s~ - Taco Sat')
+                if IsControlJustReleased(0, 38) then
+                    TacoSat()
+                end
             end
         end
 
         if satiyormu == true and satiskordinat ~= false and distance5 < 10 then
-            perform = true
+            sleep = 7
             DrawMarker(2, coords[1], coords[2], coords[3], 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.4, 0.4, 0.2, 255, 255, 255, 255, 0, 0, 0, 1, 0, 0, 0)
             if distance5 < 1 then
-                isInMarker5 = true
                 DrawText3D(coords[1], coords[2], coords[3] + 0.4, '~g~E~s~ - Kapıyı Çal')
+                if IsControlJustReleased(0, 38) then
+                    TacoyuSat()
+                end
             end
         end
 
         if distance6 < 10 then
-            perform = true
+            sleep = 7
             DrawMarker(2, Config.TacoEkmegiYap.x, Config.TacoEkmegiYap.y, Config.TacoEkmegiYap.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.4, 0.4, 0.2, 255, 255, 255, 255, 0, 0, 0, 1, 0, 0, 0)
             if distance6 < 1 then
-                isInMarker6 = true
                 DrawText3D(Config.TacoEkmegiYap.x, Config.TacoEkmegiYap.y, Config.TacoEkmegiYap.z + 0.4, '~g~E~s~ - Taco Ekmegi Pisir')
+                if IsControlJustReleased(0, 38) then
+                    TacoEkmegi()
+                end
             end
         end
 
         if distance7 < 10 then
-            perform = true
+            sleep = 7
             DrawMarker(2, Config.TacoMalzemesi.x, Config.TacoMalzemesi.y, Config.TacoMalzemesi.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.4, 0.4, 0.2, 255, 255, 255, 255, 0, 0, 0, 1, 0, 0, 0)
             if distance7 < 1 then
-                isInMarker7 = true
                 DrawText3D(Config.TacoMalzemesi.x, Config.TacoMalzemesi.y, Config.TacoMalzemesi.z + 0.4, '~g~E~s~ - Taco Malzemesi Topla')
+                if IsControlJustReleased(0, 38) then
+                    TacoMalzemesi()
+                end
             end
         end
-
-        if IsControlJustReleased(0, 38) and isInMarker then
-            TacoPisir()
-        elseif IsControlJustReleased(0, 38) and isInMarker2 then
-            TacoHazirla()
-        elseif IsControlJustReleased(0, 38) and isInMarker3 then
-            TacoPaketle()
-        elseif IsControlJustReleased(0, 38) and isInMarker4 then
-            TacoSat()
-        elseif IsControlJustReleased(0, 38) and isInMarker5 then
-            TacoyuSat()
-        elseif IsControlJustReleased(0, 38) and isInMarker6 then
-            TacoEkmegi()
-        elseif IsControlJustReleased(0, 38) and isInMarker7 then
-            TacoMalzemesi()
-        end
-
-        if perform then
-            sleep = 7
-        elseif not perform then
-            sleep = 2000
-        end
+        Citizen.Wait(sleep)
     end
 end)
 
