@@ -11,5 +11,6 @@ Açıklama:
 
 Gereksinimler:
 - https://github.com/ONyambura/mythic_progbar
+- https://github.com/Utinax/reload-skillbar
 
 Discord Sunucum: https://discord.gg/kvfWuMj6FN
