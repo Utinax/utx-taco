@@ -8,14 +8,19 @@ Citizen.CreateThread(function()
 end)
 
 local sleep = 2000
+local perform = false
 local isInMarker = false
 local isInMarker2 = false
 local isInMarker3 = false
 local isInMarker4 = false
 local isInMarker5 = false
+local isInMarker6 = false
+local isInMarker7 = false
 local pisiriyormu = false
 local hazirliyormu = false
 local paketliyormu = false
+local ekmekaliyormu = false
+local malzemealiyormu = false
 local satiyormu = false
 local satiskordinat = false
 local satisblip = false
@@ -128,49 +133,52 @@ Citizen.CreateThread(function()
         isInMarker3 = false
         isInMarker4 = false
         isInMarker5 = false
+        isInMarker6 = false
 
         local player = PlayerPedId()
         local playercoords = GetEntityCoords(player)
-        local distance = GetDistanceBetweenCoords(playercoords, 11.43397, -1599.46, 29.375, true)
-        local distance2 = GetDistanceBetweenCoords(playercoords, 15.67963, -1598.44, 29.377, true)
-        local distance3 = GetDistanceBetweenCoords(playercoords, 7.143737, -1604.99, 29.371, true)
-        local distance4 = GetDistanceBetweenCoords(playercoords, 4.468902, -1605.17, 29.316, true)
+        local distance = GetDistanceBetweenCoords(playercoords, Config.TacoEtPisirme.x, Config.TacoEtPisirme.y, Config.TacoEtPisirme.z, true)
+        local distance2 = GetDistanceBetweenCoords(playercoords, Config.TacoHazirlama.x, Config.TacoHazirlama.y, Config.TacoHazirlama.z, true)
+        local distance3 = GetDistanceBetweenCoords(playercoords, Config.TacoPaketleme.x, Config.TacoPaketleme.y, Config.TacoPaketleme.z, true)
+        local distance4 = GetDistanceBetweenCoords(playercoords, Config.TacoSatisyeri.x, Config.TacoSatisyeri.y, Config.TacoSatisyeri.z, true)
         local coords = GetBlipInfoIdCoord(satisblip)
         local distance5 = GetDistanceBetweenCoords(playercoords, coords[1], coords[2], coords[3], true)
+        local distance6 = GetDistanceBetweenCoords(playercoords, Config.TacoEkmegiYap.x, Config.TacoEkmegiYap.y, Config.TacoEkmegiYap.z, true)
+        local distance7 = GetDistanceBetweenCoords(playercoords, Config.TacoMalzemesi.x, Config.TacoMalzemesi.y, Config.TacoMalzemesi.z, true)
 
         if distance < 10 then
             perform = true
-            DrawMarker(2, 11.43397, -1599.46, 29.375, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.4, 0.4, 0.2, 255, 255, 255, 255, 0, 0, 0, 1, 0, 0, 0)
+            DrawMarker(2, Config.TacoEtPisirme.x, Config.TacoEtPisirme.y, Config.TacoEtPisirme.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.4, 0.4, 0.2, 255, 255, 255, 255, 0, 0, 0, 1, 0, 0, 0)
             if distance < 1 then
                 isInMarker = true
-                DrawText3D(11.43397, -1599.46, 29.375 + 0.4, '~g~E~s~ - Taco Eti Pisir')
+                DrawText3D(Config.TacoEtPisirme.x, Config.TacoEtPisirme.y, Config.TacoEtPisirme.z + 0.4, '~g~E~s~ - Taco Eti Pisir')
             end
         end
 
         if distance2 < 10 then
             perform = true
-            DrawMarker(2, 15.67963, -1598.44, 29.377, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.4, 0.4, 0.2, 255, 255, 255, 255, 0, 0, 0, 1, 0, 0, 0)
+            DrawMarker(2, Config.TacoHazirlama.x, Config.TacoHazirlama.y, Config.TacoHazirlama.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.4, 0.4, 0.2, 255, 255, 255, 255, 0, 0, 0, 1, 0, 0, 0)
             if distance2 < 1 then
                 isInMarker2 = true
-                DrawText3D(15.67963, -1598.44, 29.377 + 0.4, '~g~E~s~ - Taco Hazırla')
+                DrawText3D(Config.TacoHazirlama.x, Config.TacoHazirlama.y, Config.TacoHazirlama.z + 0.4, '~g~E~s~ - Taco Hazırla')
             end
         end
 
         if distance3 < 10 then
             perform = true
-            DrawMarker(2, 7.143737, -1604.99, 29.371, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.4, 0.4, 0.2, 255, 255, 255, 255, 0, 0, 0, 1, 0, 0, 0)
+            DrawMarker(2, Config.TacoPaketleme.x, Config.TacoPaketleme.y, Config.TacoPaketleme.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.4, 0.4, 0.2, 255, 255, 255, 255, 0, 0, 0, 1, 0, 0, 0)
             if distance3 < 1 then
                 isInMarker3 = true
-                DrawText3D(7.143737, -1604.99, 29.371 + 0.4, '~g~E~s~ - Taco Paketle')
+                DrawText3D(Config.TacoPaketleme.x, Config.TacoPaketleme.y, Config.TacoPaketleme.z + 0.4, '~g~E~s~ - Taco Paketle')
             end
         end
 
         if distance4 < 10 then
             perform = true
-            DrawMarker(2, 4.468902, -1605.17, 29.316, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.4, 0.4, 0.2, 255, 255, 255, 255, 0, 0, 0, 1, 0, 0, 0)
+            DrawMarker(2, Config.TacoSatisyeri.x, Config.TacoSatisyeri.y, Config.TacoSatisyeri.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.4, 0.4, 0.2, 255, 255, 255, 255, 0, 0, 0, 1, 0, 0, 0)
             if distance4 < 1 then
                 isInMarker4 = true
-                DrawText3D(4.468902, -1605.17, 29.316 + 0.4, '~g~E~s~ - Taco Sat')
+                DrawText3D(Config.TacoSatisyeri.x, Config.TacoSatisyeri.y, Config.TacoSatisyeri.z + 0.4, '~g~E~s~ - Taco Sat')
             end
         end
 
@@ -180,6 +188,24 @@ Citizen.CreateThread(function()
             if distance5 < 1 then
                 isInMarker5 = true
                 DrawText3D(coords[1], coords[2], coords[3] + 0.4, '~g~E~s~ - Kapıyı Çal')
+            end
+        end
+
+        if distance6 < 10 then
+            perform = true
+            DrawMarker(2, Config.TacoEkmegiYap.x, Config.TacoEkmegiYap.y, Config.TacoEkmegiYap.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.4, 0.4, 0.2, 255, 255, 255, 255, 0, 0, 0, 1, 0, 0, 0)
+            if distance6 < 1 then
+                isInMarker6 = true
+                DrawText3D(Config.TacoEkmegiYap.x, Config.TacoEkmegiYap.y, Config.TacoEkmegiYap.z + 0.4, '~g~E~s~ - Taco Ekmegi Pisir')
+            end
+        end
+
+        if distance7 < 10 then
+            perform = true
+            DrawMarker(2, Config.TacoMalzemesi.x, Config.TacoMalzemesi.y, Config.TacoMalzemesi.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.4, 0.4, 0.2, 255, 255, 255, 255, 0, 0, 0, 1, 0, 0, 0)
+            if distance7 < 1 then
+                isInMarker7 = true
+                DrawText3D(Config.TacoMalzemesi.x, Config.TacoMalzemesi.y, Config.TacoMalzemesi.z + 0.4, '~g~E~s~ - Taco Malzemesi Topla')
             end
         end
 
@@ -193,8 +219,11 @@ Citizen.CreateThread(function()
             TacoSat()
         elseif IsControlJustReleased(0, 38) and isInMarker5 then
             TacoyuSat()
+        elseif IsControlJustReleased(0, 38) and isInMarker6 then
+            TacoEkmegi()
+        elseif IsControlJustReleased(0, 38) and isInMarker7 then
+            TacoMalzemesi()
         end
-
 
         if perform then
             sleep = 7
@@ -204,32 +233,121 @@ Citizen.CreateThread(function()
     end
 end)
 
-function TacoPisir()
-    if not pisiriyormu then
-        pisiriyormu = true
-        local player = PlayerPedId()
-        TaskStartScenarioInPlace(player, 'PROP_HUMAN_BBQ', 0, true)
+function TacoMalzemesi()
+    if not malzemealiyormu then
+        malzemealiyormu = true
         exports['mythic_progbar']:Progress({
-            name = "tacopisirme",
-            duration = 10000,
-            label = 'Taco eti pişiriyorsun...',
+            name = "tacomalzemesi",
+            duration = 5000,
+            label = 'Taco malzemesi topluyorsun...',
             useWhileDead = false,
             canCancel = false,
-            controlDisables = {
+             controlDisables = {
                 disableMovement = true,
                 disableCarMovement = true,
                 disableMouse = false,
                 disableCombat = true,
             },
+            animation = {
+                animDict = "mp_arresting",
+                anim = "a_uncuff",
+                flags = 49,
+            },
         }, function(cancelled)
             if not cancelled then
-                TriggerServerEvent('utx-taco:etver')
-                ESX.ShowNotification('Başarıyla taco eti pişirdin!')
-                pisiriyormu = false
-            else
-                -- Do Something If Action Was Cancelled
+                TriggerServerEvent('utx-taco:malzemever')
+                malzemealiyormu = false
+                ESX.ShowNotification('Taco malzemesi topladın!')
+             else
+                 -- Do Something If Action Was Cancelled
             end
         end)
+    end
+end
+
+function TacoEkmegi()
+    if not ekmekaliyormu then
+        ekmekaliyormu = true
+        exports['mythic_progbar']:Progress({
+            name = "tacoekmegi",
+            duration = 5000,
+            label = 'Taco ekmeği pişiriyorsun...',
+            useWhileDead = false,
+            canCancel = false,
+             controlDisables = {
+                disableMovement = true,
+                disableCarMovement = true,
+                disableMouse = false,
+                disableCombat = true,
+            },
+            animation = {
+                animDict = "mp_arresting",
+                anim = "a_uncuff",
+                flags = 49,
+            },
+        }, function(cancelled)
+            if not cancelled then
+                TriggerServerEvent('utx-taco:ekmekver')
+                ekmekaliyormu = false
+                ESX.ShowNotification('Ekmeği başarıyla pişirdin!')
+             else
+                 -- Do Something If Action Was Cancelled
+            end
+        end)
+    end
+end
+
+function TacoPisir()
+    if not pisiriyormu then
+        pisiriyormu = true
+        local player = PlayerPedId()
+        TaskStartScenarioInPlace(player, 'PROP_HUMAN_BBQ', 0, true)
+        local finished = exports["reload-skillbar"]:taskBar(5000,math.random(5,15))
+        if finished ~= 100 then
+            pisiriyormu = false
+            ClearPedTasksImmediately(player)
+            ESX.ShowNotification('Eti pişiremedin!')
+        else
+            local finished2 = exports["reload-skillbar"]:taskBar(4750,math.random(5,15))
+            if finished2 ~= 100 then
+                pisiriyormu = false
+                ClearPedTasksImmediately(player)
+                ESX.ShowNotification('Eti pişiremedin!')
+            else
+                local finished3 = exports["reload-skillbar"]:taskBar(4500,math.random(5,15))
+                if finished3 ~= 100 then
+                    pisiriyormu = false
+                    ClearPedTasksImmediately(player)
+                    ESX.ShowNotification('Eti pişiremedin!')
+                else
+                    TriggerServerEvent('utx-taco:etver')
+                    pisiriyormu = false
+                    ClearPedTasksImmediately(player)
+                    ESX.ShowNotification('Eti başarıyla pişirdin!')
+                end
+            end
+        end
+        -- exports['mythic_progbar']:Progress({
+        --     name = "tacopisirme",
+        --     duration = 10000,
+        --     label = 'Taco eti pişiriyorsun...',
+        --     useWhileDead = false,
+        --     canCancel = false,
+        --     controlDisables = {
+        --         disableMovement = true,
+        --         disableCarMovement = true,
+        --         disableMouse = false,
+        --         disableCombat = true,
+        --     },
+        -- }, function(cancelled)
+        --     if not cancelled then
+        --         TriggerServerEvent('utx-taco:etver')
+        --         ESX.ShowNotification('Başarıyla taco eti pişirdin!')
+        --         pisiriyormu = false
+        --     else
+        --         -- Do Something If Action Was Cancelled
+        --     end
+        -- end)
     end
 end
 
@@ -263,7 +381,7 @@ function TacoHazirla()
                     -- Do Something If Action Was Cancelled
                 end
             end)
-        end, "tacoeti", 3)
+        end, "tacoeti", 1)
     end
 end
 
@@ -334,25 +452,32 @@ end
 
 Citizen.CreateThread(function()
 	while true do
-	Citizen.Wait(0)
-		if satiyormu == false and satisblip ~= false then
+    Citizen.Wait(sleep)
+    perform = false
+        if satiyormu == false and satisblip ~= false then
+            perform = true
 			RemoveBlip(satisblip)
 			satisblip = false
 		end
-	end
+    end
+    if perform then
+        sleep = 7
+    elseif not perform then
+        sleep = 2000
+    end
 end)
 
 Citizen.CreateThread(function()
-	local coords = vector3(11.43397, -1599.46, 29.375)
-	local blip = AddBlipForCoord(coords)
+	--local coords = vector3(11.43397, -1599.46, 29.375)
+	local blip = AddBlipForCoord(Config.Blip.coords)
 
-	SetBlipSprite(blip, 79)
-	SetBlipScale(blip, 0.7)
-	SetBlipColour(blip, 5)
+	SetBlipSprite(blip, Config.Blip.sekil)
+	SetBlipScale(blip, Config.Blip.boyut)
+	SetBlipColour(blip, Config.Blip.renk)
 	SetBlipAsShortRange(blip, true)
 
 	BeginTextCommandSetBlipName('STRING')
-	AddTextComponentSubstringPlayerName('Taco')
+	AddTextComponentSubstringPlayerName(Config.Blip.yazi)
 	EndTextCommandSetBlipName(blip)
 end)
 
