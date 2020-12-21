@@ -428,19 +428,14 @@ function SatisBlipOlustur(x,y,z)
 end
 
 Citizen.CreateThread(function()
-	while true do
-    Citizen.Wait(sleep)
-    perform = false
+    while true do
+        local sleep = 2000
         if satiyormu == false and satisblip ~= false then
-            perform = true
+            sleep = 7
 			RemoveBlip(satisblip)
 			satisblip = false
-		end
-    end
-    if perform then
-        sleep = 7
-    elseif not perform then
-        sleep = 2000
+        end
+        Citizen.Wait(sleep)
     end
 end)
 
